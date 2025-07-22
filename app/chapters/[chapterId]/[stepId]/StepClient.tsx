@@ -208,217 +208,544 @@ function getStepContent(stepId: string): string {
       </div>
     `,
     'step-2-1': `
-      <h2>Rustのインストール</h2>
-      <p>Walrusの開発にはRustプログラミング言語が必要です。Rustは安全性とパフォーマンスを重視したシステムプログラミング言語で、Walrusの多くのツールがRustで書かれています。</p>
+      <h2>Suiのインストール</h2>
+      <p>Walrus SitesはSuiブロックチェーン上で動作します。まずはSui CLIをインストールして、Suiエコシステムの開発環境を整えましょう。</p>
       
-      <h3>前提条件</h3>
-      <ul>
-        <li>Windows、macOS、またはLinux OS</li>
-        <li>最新のWebブラウザ</li>
-        <li>ターミナル／コマンドプロンプトへのアクセス</li>
-      </ul>
+      <h3>Suiupを使用したインストール（推奨）</h3>
+      <p>Suiupは、SuiエコシステムのCLIツールを管理するためのツールです。RustのRustupのようなもので、複数のバージョンを管理できます。</p>
       
-      <h3>Rustのインストール手順</h3>
+      <h4>1. Suiupのインストール</h4>
       
-      <h4>1. rustupのインストール</h4>
-      <p><code>rustup</code>はRustのツールチェーンインストーラーです。以下のコマンドを実行してください：</p>
-      
+      <h5>macOS / Linux</h5>
       <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
-        <p># macOS / Linux</p>
-        <p>curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh</p>
-        <br>
-        <p># Windows</p>
-        <p>https://rustup.rs/ からrustup-init.exeをダウンロードして実行</p>
+        <p>curl -sSfL https://raw.githubusercontent.com/Mystenlabs/suiup/main/install.sh | sh</p>
       </div>
       
-      <h4>2. パスの設定</h4>
-      <p>インストール後、シェルを再起動するか、以下のコマンドを実行してパスを設定：</p>
+      <h5>Windows</h5>
+      <ol>
+        <li>GitHubリリースページから <code>suiup-windows.zip</code> をダウンロード</li>
+        <li>専用フォルダを作成：<code>%USERPROFILE%\\bin</code></li>
+        <li><code>suiup.exe</code>をフォルダに配置</li>
+        <li>環境変数を設定してコマンドを認識させる</li>
+      </ol>
+      
+      <div class="bg-yellow-50 p-4 rounded-lg mt-4">
+        <p class="font-semibold">📝 Windows環境変数の設定</p>
+        <ol>
+          <li>「システムの詳細設定」を開く</li>
+          <li>「環境変数」ボタンをクリック</li>
+          <li>「Path」変数に <code>%USERPROFILE%\\bin</code> を追加</li>
+          <li>コマンドプロンプトを再起動</li>
+        </ol>
+      </div>
+      
+      <h4>2. Sui CLIのインストール</h4>
+      <p>Suiupを使ってSui CLIをインストールします：</p>
       
       <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
-        <p>source $HOME/.cargo/env</p>
+        <p># 最新のテストネット版をインストール</p>
+        <p>suiup install sui@testnet</p>
+        <br>
+        <p># 最新のDevnet版をインストール</p>
+        <p>suiup install sui@devnet</p>
       </div>
       
       <h4>3. インストールの確認</h4>
       <p>正しくインストールされたか確認しましょう：</p>
       
       <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
-        <p>rustc --version</p>
-        <p>cargo --version</p>
+        <p>sui --version</p>
       </div>
       
       <div class="bg-blue-50 p-4 rounded-lg mt-4">
-        <p class="font-semibold">💡 ヒント</p>
-        <p>Cargoは、Rustのパッケージマネージャーとビルドシステムです。Walrusツールの多くはCargoを使ってインストールします。</p>
+        <p class="font-semibold">💡 Suiupの主な機能</p>
+        <ul>
+          <li><strong>複数ネットワーク対応</strong>：testnet、devnet、mainnetに対応</li>
+          <li><strong>バージョン管理</strong>：異なるバージョンのSui CLIを管理</li>
+          <li><strong>簡単な切り替え</strong>：プロジェクトに応じてバージョンを切り替え</li>
+          <li><strong>特定バージョン指定</strong>：具体的なバージョン番号での指定も可能</li>
+        </ul>
+      </div>
+      
+      <h3>代替インストール方法</h3>
+      
+      <h4>Cargoを使用したインストール</h4>
+      <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
+        <p># Rustがインストールされている場合</p>
+        <p>cargo install --locked --git https://github.com/MystenLabs/sui.git --branch testnet sui</p>
+      </div>
+      
+      <h4>プリビルドバイナリ</h4>
+      <p>GitHubリリースページからプラットフォーム別のバイナリをダウンロードすることも可能です。</p>
+      
+      <div class="bg-green-50 p-4 rounded-lg mt-4">
+        <p class="font-semibold">✅ チェックポイント</p>
+        <ul>
+          <li>Suiupがインストールされている</li>
+          <li>Sui CLIがインストールされている</li>
+          <li><code>sui --version</code>でバージョンが確認できる</li>
+        </ul>
       </div>
     `,
     'step-2-2': `
-      <h2>Suiウォレットの作成</h2>
-      <p>WalrusはSuiブロックチェーン上で動作するため、Suiウォレットが必要です。ウォレットはあなたのデジタル資産を管理し、Walrusサービスの支払いに使用されます。</p>
+      <h2>Sui CLIの基本的な使い方</h2>
+      <p>Sui CLIをインストールしたので、次はウォレットの作成、ネットワークの切り替え、そして基本的なコマンドの使い方を学びましょう。</p>
       
-      <h3>Slush Wallet（公式推奨）のインストール</h3>
-      <p>SlushはMysten Labsが開発する公式ウォレットです。最も安全で機能豊富なオプションで、Suiエコシステムの最新機能にいち早く対応します。</p>
-      
-      <h4>1. Slush Walletの取得</h4>
-      <ul>
-        <li><strong>公式サイト</strong>：<a href="https://slush.app/" target="_blank">slush.app</a> - 最新情報とダウンロードリンク</li>
-        <li><strong>ブラウザ拡張機能</strong>：<a href="https://chrome.google.com/webstore/detail/slush-wallet/fbmhpjmepcmkackbljkcgkkjcoihiomf" target="_blank">Chrome Web Store</a></li>
-        <li><strong>モバイルアプリ</strong>：<a href="https://apps.apple.com/app/slush-wallet/id6476773007" target="_blank">App Store</a> | <a href="https://play.google.com/store/apps/details?id=com.slush.wallet" target="_blank">Google Play</a></li>
-      </ul>
-      
-      <h4>2. ウォレットの作成</h4>
-      <ol>
-        <li>Slush Walletを開いて「Create New Wallet」を選択</li>
-        <li><strong>重要</strong>：表示される12個のシードワードを安全な場所に保存</li>
-        <li>シードワードを正しい順序で確認</li>
-        <li>強力なパスワードを設定</li>
-        <li>ウォレットの作成完了</li>
-      </ol>
-      
-      
-      <h3>Sui CLIのインストール（開発者向け）</h3>
-      <p>コマンドラインでの開発作業やWalrus CLIとの連携に必要です：</p>
-      
-      <h4>方法1: パッケージマネージャー（推奨）</h4>
-      <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
-        <p># macOS / Linux (Homebrew)</p>
-        <p>brew install sui</p>
-        <br>
-        <p># Windows (Chocolatey)</p>
-        <p>choco install sui</p>
-      </div>
-      
-      <h4>方法2: suiup（実験的ツール）</h4>
-      <p>suiupはSuiのバージョン管理ツールです。複数のSuiバージョンを管理できます：</p>
+      <h3>事前準備：インストール確認</h3>
+      <p>まず、Sui CLIが正しくインストールされているか確認します：</p>
       
       <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
-        <p># suiupのインストール</p>
-        <p>curl --proto '=https' --tlsv1.2 -sSf https://git.io/JWrN1 | sh</p>
-        <br>
-        <p># テストネット版Suiのインストール</p>
-        <p>suiup install sui@testnet</p>
-        <br>
-        <p># メインネット版への切り替え</p>
-        <p>suiup install sui@mainnet</p>
-        <p>suiup use sui@mainnet</p>
-      </div>
-      
-      <h4>方法3: Cargoからのインストール</h4>
-      <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
-        <p># ソースからビルド（カスタマイズ可能）</p>
-        <p>cargo install --locked --git https://github.com/MystenLabs/sui.git --branch testnet sui --features tracing</p>
-      </div>
-      
-      <h4>インストールの確認</h4>
-      <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
-        <p># バージョン確認</p>
+        <p># インストール確認</p>
         <p>sui --version</p>
-        <br>
-        <p># 利用可能なコマンド確認</p>
-        <p>sui --help</p>
       </div>
       
-      <h4>ウォレットの設定</h4>
+      <h3>アドレス（ウォレット）の管理</h3>
+      
+      <h4>1. 既存アドレスの確認</h4>
       <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
-        <p># 新しいウォレットの作成</p>
+        <p># 作成済みのアドレス一覧を表示</p>
+        <p>sui client addresses</p>
+        <br>
+        <p># 現在アクティブなアドレスを確認</p>
+        <p>sui client active-address</p>
+      </div>
+      
+      <h4>2. 新しいアドレスの作成</h4>
+      <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
+        <p># Ed25519暗号方式で新しいアドレスを作成</p>
         <p>sui client new-address ed25519</p>
+      </div>
+      
+      <div class="bg-yellow-50 p-4 rounded-lg mt-4">
+        <p class="font-semibold">⚠️ 重要：秘密鍵の保管</p>
+        <p>新しいアドレスを作成すると、復旧フレーズ（Recovery phrase）が表示されます。これは<strong>非常に重要</strong>なので、安全な場所に保存してください。</p>
+      </div>
+      
+      <h4>3. アクティブアドレスの切り替え</h4>
+      <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
+        <p># アドレスまたはエイリアスを指定して切り替え</p>
+        <p>sui client switch --address &lt;ADDRESS_or_ALIAS&gt;</p>
+      </div>
+      
+      <h3>ネットワークの管理</h3>
+      
+      <h4>1. 利用可能なネットワークの確認</h4>
+      <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
+        <p># 設定済みのネットワーク一覧を表示</p>
+        <p>sui client envs</p>
+      </div>
+      
+      <h4>2. ネットワークの切り替え</h4>
+      <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
+        <p># Devnetに切り替え（開発・テスト用）</p>
+        <p>sui client switch --env devnet</p>
         <br>
-        <p># 既存ウォレットのインポート</p>
-        <p>sui keytool import "your-private-key" ed25519</p>
-        <br>
-        <p># ネットワーク設定（テストネット）</p>
-        <p>sui client new-env --alias testnet --rpc https://fullnode.testnet.sui.io:443</p>
+        <p># Testnetに切り替え（より本番に近い環境）</p>
         <p>sui client switch --env testnet</p>
+        <br>
+        <p># Mainnetに切り替え（本番環境）</p>
+        <p>sui client switch --env mainnet</p>
       </div>
       
       <div class="bg-blue-50 p-4 rounded-lg mt-4">
-        <p class="font-semibold">💡 suiupの利点</p>
+        <p class="font-semibold">📚 ネットワークの違い</p>
         <ul>
-          <li><strong>バージョン管理</strong>：複数のSuiバージョンを簡単に切り替え</li>
-          <li><strong>アップデート</strong>：最新版への更新が簡単</li>
-          <li><strong>プロジェクト別設定</strong>：プロジェクトごとに異なるバージョンを使用可能</li>
-          <li><strong>実験的機能</strong>：開発中の新機能をいち早く試せる</li>
+          <li><strong>Devnet</strong>：開発用。頻繁にリセットされる（10 SUI Faucet）</li>
+          <li><strong>Testnet</strong>：テスト用。より安定している（1 SUI Faucet）</li>
+          <li><strong>Mainnet</strong>：本番環境。実際のSUIトークンを使用</li>
         </ul>
       </div>
       
-      <div class="bg-blue-50 p-4 rounded-lg mt-4">
-        <p class="font-semibold">💡 Slushの特徴</p>
-        <ul>
-          <li><strong>公式サポート</strong>：Mysten Labsが開発・維持</li>
-          <li><strong>最新機能</strong>：Suiの新機能に最初に対応</li>
-          <li><strong>セキュリティ</strong>：厳格なセキュリティ監査済み</li>
-          <li><strong>マルチプラットフォーム</strong>：デスクトップ、モバイル、ブラウザ対応</li>
-        </ul>
+      <h3>Moveプロジェクトの作成</h3>
+      <p>基本的なSui Moveプロジェクトを作成してみましょう：</p>
+      
+      <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
+        <p># 新しいプロジェクトを作成</p>
+        <p>sui move new hello_sui</p>
+        <br>
+        <p># プロジェクトディレクトリに移動</p>
+        <p>cd hello_sui</p>
+      </div>
+      
+      <h3>ビルドとデプロイ</h3>
+      
+      <h4>1. プロジェクトのビルド</h4>
+      <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
+        <p># Moveコードをコンパイル</p>
+        <p>sui move build</p>
+      </div>
+      
+      <h4>2. パッケージのデプロイ</h4>
+      <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
+        <p># ブロックチェーンにパッケージをデプロイ</p>
+        <p>sui client publish --gas-budget 5000000</p>
       </div>
       
       <div class="bg-red-50 p-4 rounded-lg mt-4">
-        <p class="font-semibold">⚠️ セキュリティ注意</p>
+        <p class="font-semibold">⚠️ デプロイ前の確認事項</p>
         <ul>
-          <li>シードワード（シードフレーズ）は絶対に他人に教えないでください</li>
-          <li>オンラインに保存せず、物理的に安全な場所に記録してください</li>
-          <li>テストネット用とメインネット用のウォレットは分けて管理しましょう</li>
-          <li>公式サイト（slush.app）からのみダウンロードしてください</li>
+          <li>適切なネットワーク（devnet/testnet）に接続している</li>
+          <li>アクティブアドレスに十分なSUIトークンがある</li>
+          <li>Faucetからテスト用トークンを取得済み</li>
         </ul>
       </div>
-    `,
-    'step-2-3': `
-      <h2>テストネットトークンの取得</h2>
-      <p>Walrusの開発とテストには、テストネット用のWALトークンが必要です。これらのトークンは無料で取得でき、学習と開発目的で使用できます。</p>
       
-      <h3>Sui Testnet Faucetでトークンを取得</h3>
+      <h3>テスト用トークンの取得</h3>
+      <p>DevnetやTestnetでの開発には、Faucetからテスト用のSUIトークンを取得できます：</p>
       
-      <h4>1. ウォレットアドレスの確認</h4>
-      <p>Slush Wallet（またはお使いのSuiウォレット）を開いて、あなたのウォレットアドレスをコピーします。アドレスは「0x」で始まる長い文字列です。</p>
-      
-      <h4>2. Faucetサイトにアクセス</h4>
-      <p><a href="https://faucet.testnet.sui.io/" target="_blank">Sui Testnet Faucet</a>にアクセスします。</p>
-      
-      <h4>3. トークンの請求</h4>
-      <ol>
-        <li>ウォレットアドレスを入力フィールドに貼り付け</li>
-        <li>「Request Testnet SUI」ボタンをクリック</li>
-        <li>数分待つとウォレットにテストネットSUIが追加されます</li>
-      </ol>
-      
-      <h3>WalrusテストネットでWALトークンを取得</h3>
-      
-      <h4>Walrus Faucetの使用</h4>
       <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
-        <p># Walrus CLIを使ったトークン取得</p>
-        <p>walrus get-wal</p>
+        <p># Sui Faucet（Discord）でトークンを請求</p>
+        <p># または以下のウェブサイトを利用</p>
+        <p># Devnet: https://faucet.devnet.sui.io/</p>
+        <p># Testnet: https://faucet.testnet.sui.io/</p>
       </div>
       
-      <h3>トークン残高の確認</h3>
-      <p>正しくトークンが受け取れたか確認しましょう：</p>
+      <h3>よく使うコマンド一覧</h3>
       
-      <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
-        <p># Sui CLI での残高確認</p>
-        <p>sui client gas</p>
-        <br>
-        <p># アクティブなアドレス確認</p>
-        <p>sui client active-address</p>
-        <br>
-        <p># Walrus CLI での確認</p>
-        <p>walrus balance</p>
+      <div class="bg-gray-100 p-4 rounded-lg">
+        <table class="w-full text-sm">
+          <tbody>
+            <tr class="border-b">
+              <td class="font-mono py-1">sui client addresses</td>
+              <td class="py-1">アドレス一覧表示</td>
+            </tr>
+            <tr class="border-b">
+              <td class="font-mono py-1">sui client active-address</td>
+              <td class="py-1">アクティブアドレス確認</td>
+            </tr>
+            <tr class="border-b">
+              <td class="font-mono py-1">sui client envs</td>
+              <td class="py-1">ネットワーク一覧表示</td>
+            </tr>
+            <tr class="border-b">
+              <td class="font-mono py-1">sui move build</td>
+              <td class="py-1">プロジェクトをビルド</td>
+            </tr>
+            <tr>
+              <td class="font-mono py-1">sui client publish</td>
+              <td class="py-1">パッケージをデプロイ</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
       
       <div class="bg-green-50 p-4 rounded-lg mt-4">
         <p class="font-semibold">✅ チェックポイント</p>
         <ul>
-          <li>Suiウォレットにテストネット SUI が表示される</li>
-          <li>Walrus用のWALトークンが利用可能</li>
-          <li>CLIコマンドでトークン残高が確認できる</li>
+          <li>ウォレットアドレスを作成できる</li>
+          <li>ネットワークを切り替えできる</li>
+          <li>Moveプロジェクトを作成できる</li>
+          <li>基本的なビルド・デプロイの流れを理解している</li>
+        </ul>
+      </div>
+    `,
+    'step-2-3': `
+      <h2>Walrusのインストール</h2>
+      <p>Walrusは分散型ストレージシステムで、Walrus SitesはこのWalrusを活用してウェブサイトをホスティングします。Walrus CLIをインストールして、ストレージ機能を利用できるようにしましょう。</p>
+      
+      <h3>前提条件</h3>
+      <ul>
+        <li>Sui CLIがインストール済み（Step 2-1, 2-2で完了）</li>
+        <li>Rustがインストール済み（Cargoコマンドが利用可能）</li>
+        <li>安定したインターネット接続</li>
+      </ul>
+      
+      <h3>Walrus CLIのインストール</h3>
+      
+      <h4>方法1: インストールスクリプト（推奨）</h4>
+      <p>最も簡単で推奨される方法です：</p>
+      
+      <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
+        <p># macOS / Linux / WSL</p>
+        <p>curl -sSf https://install.wal.app | sh</p>
+        <br>
+        <p># インストール後、パスを更新</p>
+        <p>source ~/.bashrc  # または ~/.zshrc</p>
+      </div>
+      
+      <h4>方法2: Cargoからのインストール</h4>
+      <p>Rustの開発環境がある場合、ソースからビルドできます：</p>
+      
+      <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
+        <p># メインネット版（推奨）</p>
+        <p>cargo install --git https://github.com/MystenLabs/walrus --branch mainnet walrus-cli --locked</p>
+        <br>
+        <p># テストネット版</p>
+        <p>cargo install --git https://github.com/MystenLabs/walrus --branch testnet walrus-cli --locked</p>
+      </div>
+      
+      <h4>方法3: プリビルドバイナリ</h4>
+      <p>GitHubリリースページから対応するプラットフォーム用のバイナリをダウンロード：</p>
+      <ul>
+        <li><strong>Ubuntu</strong>: x86_64, ARM64対応</li>
+        <li><strong>macOS</strong>: Intel、Apple Silicon対応</li>
+        <li><strong>Windows</strong>: x86_64対応</li>
+      </ul>
+      
+      <h3>設定ファイルの準備</h3>
+      <p>Walrus CLIの設定を行います：</p>
+      
+      <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
+        <p># 設定ディレクトリの作成</p>
+        <p>mkdir -p ~/.config/walrus</p>
+        <br>
+        <p># 公式設定ファイルのダウンロード</p>
+        <p>curl https://docs.wal.app/setup/client_config.yaml -o ~/.config/walrus/client_config.yaml</p>
+      </div>
+      
+      <h3>インストールの確認</h3>
+      <p>Walrus CLIが正しくインストールされたか確認します：</p>
+      
+      <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
+        <p># バージョン確認</p>
+        <p>walrus --version</p>
+        <br>
+        <p># ヘルプ表示</p>
+        <p>walrus --help</p>
+        <br>
+        <p># 設定ファイル確認</p>
+        <p>walrus info</p>
+      </div>
+      
+      <h3>Sui CLIとの連携設定</h3>
+      <p>Walrus CLIはSui CLIの設定を使用します。事前にSuiの設定が正しく行われているか確認しましょう：</p>
+      
+      <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
+        <p># 現在のSui設定を確認</p>
+        <p>sui client active-env</p>
+        <p>sui client active-address</p>
+        <br>
+        <p># 必要に応じてテストネットに切り替え</p>
+        <p>sui client switch --env testnet</p>
+      </div>
+      
+      <h3>ネットワーク接続の確認</h3>
+      <p>Walrusストレージネットワークへの接続を確認します：</p>
+      
+      <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
+        <p># ストレージノードの健全性チェック</p>
+        <p>walrus health</p>
+        <br>
+        <p># システム情報の確認</p>
+        <p>walrus info</p>
+      </div>
+      
+      <div class="bg-blue-50 p-4 rounded-lg mt-4">
+        <p class="font-semibold">💡 Walrusとの対話方法</p>
+        <ul>
+          <li><strong>CLI</strong>: コマンドライン インターフェース（このチュートリアル）</li>
+          <li><strong>JSON API</strong>: プログラムからのアクセス用</li>
+          <li><strong>HTTP API</strong>: ローカルまたはパブリッククライアントデーモン経由</li>
+          <li><strong>Site-Builder</strong>: ウェブサイト専用のデプロイツール</li>
+        </ul>
+      </div>
+      
+      <div class="bg-yellow-50 p-4 rounded-lg mt-4">
+        <p class="font-semibold">📝 重要な注意事項</p>
+        <ul>
+          <li><strong>パブリックデータ</strong>: Walrusに保存されるすべてのデータは公開されます</li>
+          <li><strong>保存期間</strong>: データは指定したエポック数（期間）だけ保存されます</li>
+          <li><strong>ガス代</strong>: ファイル保存にはSUIトークンが必要です</li>
+          <li><strong>ネットワーク</strong>: テストネットとメインネットでは設定が異なります</li>
+        </ul>
+      </div>
+      
+      <div class="bg-green-50 p-4 rounded-lg mt-4">
+        <p class="font-semibold">✅ チェックポイント</p>
+        <ul>
+          <li>Walrus CLIがインストールされている</li>
+          <li><code>walrus --version</code>でバージョンが確認できる</li>
+          <li>設定ファイルが正しく配置されている</li>
+          <li><code>walrus health</code>でネットワーク接続が確認できる</li>
         </ul>
       </div>
     `,
     'step-2-4': `
-      <h2>Walrus Site-Builderのセットアップ</h2>
+      <h2>Walrus CLIの基本的な使い方</h2>
+      <p>Walrus CLIがインストールできたので、基本的な操作を学びましょう。ファイルの保存、取得、および管理の基本操作を実際に試してみます。</p>
+      
+      <h3>事前準備</h3>
+      <p>Walrusを使用する前に以下を確認してください：</p>
+      
+      <div class="bg-blue-50 p-4 rounded-lg">
+        <p class="font-semibold">💡 前提条件チェック</p>
+        <ul>
+          <li>Walrus CLIがインストール済み</li>
+          <li>Sui CLIがテストネットに設定済み</li>
+          <li>アクティブなSuiアドレスにSUIトークンがある</li>
+        </ul>
+      </div>
+      
+      <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
+        <p># 現在の設定を確認</p>
+        <p>sui client active-env</p>
+        <p>sui client active-address</p>
+        <p>sui client gas</p>
+      </div>
+      
+      <h3>基本的なファイル操作</h3>
+      
+      <h4>1. テスト用ファイルの作成</h4>
+      <p>まず、テスト用のファイルを作成しましょう：</p>
+      
+      <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
+        <p># テキストファイルの作成</p>
+        <p>echo "Hello from Walrus!" > hello.txt</p>
+        <br>
+        <p># 簡単なJSONファイルの作成</p>
+        <p>echo '{"message": "分散型ストレージのテスト", "timestamp": "'$(date)'"}'> test.json</p>
+      </div>
+      
+      <h4>2. ファイルの保存（Store）</h4>
+      <p>作成したファイルをWalrusに保存します：</p>
+      
+      <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
+        <p># 単一ファイルの保存</p>
+        <p>walrus store hello.txt</p>
+        <br>
+        <p># 複数ファイルを同時に保存</p>
+        <p>walrus store hello.txt test.json</p>
+        <br>
+        <p># 保存期間を指定（エポック数）</p>
+        <p>walrus store --epochs 10 hello.txt</p>
+      </div>
+      
+      <div class="bg-yellow-50 p-4 rounded-lg mt-4">
+        <p class="font-semibold">📝 保存結果について</p>
+        <p>ファイルを保存すると、以下の情報が表示されます：</p>
+        <ul>
+          <li><strong>Blob ID</strong>：ファイルを識別するユニークなID</li>
+          <li><strong>Size</strong>：ファイルサイズ</li>
+          <li><strong>Cost</strong>：保存にかかったSUIの量</li>
+          <li><strong>Epochs</strong>：保存期間</li>
+        </ul>
+      </div>
+      
+      <h4>3. ファイルの読み取り（Read）</h4>
+      <p>保存したファイルを読み取ります：</p>
+      
+      <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
+        <p># Blob IDを使ってファイルを読み取り</p>
+        <p>walrus read &lt;blob-id&gt;</p>
+        <br>
+        <p># ファイルに出力</p>
+        <p>walrus read &lt;blob-id&gt; --out recovered.txt</p>
+      </div>
+      
+      <h4>4. ブロブの状態確認</h4>
+      <p>保存したファイルの情報を確認します：</p>
+      
+      <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
+        <p># ブロブの詳細情報を表示</p>
+        <p>walrus blob-status &lt;blob-id&gt;</p>
+        <br>
+        <p># 所有しているブロブ一覧</p>
+        <p>walrus list-blobs</p>
+      </div>
+      
+      <h3>システム情報とネットワーク確認</h3>
+      
+      <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
+        <p># システム情報の表示</p>
+        <p>walrus info</p>
+        <br>
+        <p># ストレージノードの健全性確認</p>
+        <p>walrus health</p>
+        <br>
+        <p># ネットワーク統計情報</p>
+        <p>walrus stats</p>
+      </div>
+      
+      <h3>実際の使用例</h3>
+      
+      <h4>画像ファイルの保存例</h4>
+      <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
+        <p># 画像をダウンロード（テスト用）</p>
+        <p>curl -o sample.jpg "https://via.placeholder.com/300x200/blue/white?text=Walrus+Test"</p>
+        <br>
+        <p># Walrusに保存</p>
+        <p>walrus store sample.jpg</p>
+      </div>
+      
+      <h4>HTMLファイルの保存例</h4>
+      <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
+        <p># HTMLファイルの作成</p>
+        <p>cat &lt;&lt; 'EOF' &gt; index.html
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;&lt;title&gt;Walrus Test&lt;/title&gt;&lt;/head&gt;
+&lt;body&gt;&lt;h1&gt;Hello from Walrus Storage!&lt;/h1&gt;&lt;/body&gt;
+&lt;/html&gt;
+EOF</p>
+        <br>
+        <p># Walrusに保存</p>
+        <p>walrus store index.html</p>
+      </div>
+      
+      <h3>トラブルシューティング</h3>
+      
+      <div class="bg-red-50 p-4 rounded-lg">
+        <p class="font-semibold">⚠️ よくある問題</p>
+        <ul>
+          <li><strong>「insufficient funds」エラー</strong>：SUIトークンが不足。Faucetから取得</li>
+          <li><strong>「network error」</strong>：ネットワーク接続を確認</li>
+          <li><strong>「blob not found」</strong>：Blob IDが正しいか確認</li>
+          <li><strong>「config error」</strong>：設定ファイルの配置を確認</li>
+        </ul>
+      </div>
+      
+      <h3>コマンドリファレンス</h3>
+      
+      <div class="bg-gray-100 p-4 rounded-lg">
+        <table class="w-full text-sm">
+          <tbody>
+            <tr class="border-b">
+              <td class="font-mono py-1">walrus store [file]</td>
+              <td class="py-1">ファイルをWalrusに保存</td>
+            </tr>
+            <tr class="border-b">
+              <td class="font-mono py-1">walrus read [blob-id]</td>
+              <td class="py-1">Blob IDでファイルを読み取り</td>
+            </tr>
+            <tr class="border-b">
+              <td class="font-mono py-1">walrus blob-status [blob-id]</td>
+              <td class="py-1">ブロブの状態を確認</td>
+            </tr>
+            <tr class="border-b">
+              <td class="font-mono py-1">walrus list-blobs</td>
+              <td class="py-1">所有ブロブの一覧表示</td>
+            </tr>
+            <tr class="border-b">
+              <td class="font-mono py-1">walrus info</td>
+              <td class="py-1">システム情報を表示</td>
+            </tr>
+            <tr>
+              <td class="font-mono py-1">walrus health</td>
+              <td class="py-1">ネットワーク健全性チェック</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      
+      <div class="bg-green-50 p-4 rounded-lg mt-4">
+        <p class="font-semibold">✅ チェックポイント</p>
+        <ul>
+          <li>テストファイルをWalrusに保存できる</li>
+          <li>Blob IDを使ってファイルを読み取れる</li>
+          <li>ブロブの状態確認ができる</li>
+          <li>基本的なコマンドの使い方を理解している</li>
+        </ul>
+      </div>
+    `,
+    'step-2-5': `
+      <h2>サイトビルダーのインストール</h2>
       <p>Walrus Site-Builderは、静的ウェブサイトをWalrusネットワークにデプロイするための公式ツールです。HTMLやJavaScriptで作成したサイトを分散型ネットワーク上でホスティングできます。</p>
       
       <h3>前提条件</h3>
       <p>Site-Builderを使用する前に以下を確認してください：</p>
       <ul>
-        <li>Rustがインストール済み（Step 2-1で完了）</li>
-        <li>Node.jsとnpmがインストール済み（Step 2-2で完了）</li>
+        <li>Sui CLIがインストール済み（Step 2-1, 2-2で完了）</li>
+        <li>Walrus CLIがインストール済み（Step 2-3, 2-4で完了）</li>
         <li>安定したインターネット接続</li>
       </ul>
       
@@ -491,16 +818,28 @@ function getStepContent(stepId: string): string {
         <p>cd test-walrus-site</p>
         <br>
         <p># シンプルなindex.htmlの作成</p>
-        <p>echo '&lt;!DOCTYPE html&gt;
-&lt;html&gt;
+        <p>cat &lt;&lt; 'EOF' &gt; index.html
+&lt;!DOCTYPE html&gt;
+&lt;html lang="ja"&gt;
 &lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
     &lt;title&gt;My First Walrus Site&lt;/title&gt;
+    &lt;style&gt;
+        body { font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; }
+        h1 { color: #2563eb; }
+        .highlight { background: #dbeafe; padding: 10px; border-radius: 5px; }
+    &lt;/style&gt;
 &lt;/head&gt;
 &lt;body&gt;
-    &lt;h1&gt;Hello from Walrus!&lt;/h1&gt;
-    &lt;p&gt;This site is hosted on the decentralized web.&lt;/p&gt;
+    &lt;h1&gt;🌊 Hello from Walrus!&lt;/h1&gt;
+    &lt;div class="highlight"&gt;
+        &lt;p&gt;このサイトは分散型ウェブ上でホストされています。&lt;/p&gt;
+        &lt;p&gt;Walrus Sitesへようこそ！&lt;/p&gt;
+    &lt;/div&gt;
 &lt;/body&gt;
-&lt;/html&gt;' &gt; index.html</p>
+&lt;/html&gt;
+EOF</p>
       </div>
       
       <h3>ローカルでのプレビュー</h3>
@@ -545,7 +884,18 @@ function getStepContent(stepId: string): string {
 └── assets/        # その他の静的ファイル</pre>
       </div>
       
-      <h3>次のステップの準備</h3>
+      <h3>テストデプロイの準備</h3>
+      <p>次のステップでのデプロイに向けて：</p>
+      
+      <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
+        <p># 現在の設定を確認</p>
+        <p>sui client active-env</p>
+        <p>sui client active-address</p>
+        <p>sui client gas</p>
+        <br>
+        <p># テストネットに切り替え（必要に応じて）</p>
+        <p>sui client switch --env testnet</p>
+      </div>
       
       <div class="bg-green-50 p-4 rounded-lg mt-4">
         <p class="font-semibold">✅ チェックポイント</p>
@@ -565,6 +915,11 @@ function getStepContent(stepId: string): string {
           <li><strong>自動最適化</strong>：ファイルは自動的に圧縮・最適化される</li>
           <li><strong>グローバル配信</strong>：世界中のノードから高速配信</li>
         </ul>
+      </div>
+      
+      <div class="bg-green-50 p-4 rounded-lg mt-4">
+        <p class="font-semibold">🎉 開発環境の構築完了！</p>
+        <p>おめでとうございます！Walrus Sites開発に必要なすべてのツールがインストールされました。次は実際にサイトをデプロイしてみましょう。</p>
       </div>
     `,
     'step-3-1': `
