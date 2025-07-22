@@ -598,17 +598,48 @@ function getStepContent(stepId: string): string {
         <p># https://faucet.testnet.sui.io/ にアクセス</p>
       </div>
       
-      <h4>2. Walrus Testnet WAL Faucetからトークン取得</h4>
-      <p>テストネット専用のWALトークンを取得します：</p>
+      <h4>2. テストネットWALトークンの取得方法</h4>
+      <p>テストネットWALトークンは、お持ちのテストネットSUIを1:1の交換レートでWALに変換して取得します：</p>
+      
+      <div class="bg-blue-50 p-4 rounded-lg">
+        <p class="font-semibold">💡 テストネットWALについて</p>
+        <ul>
+          <li><strong>価値なし</strong>：テストネットWALは価値がなく、テスト目的のみ</li>
+          <li><strong>無制限供給</strong>：供給量に制限がないため、蓄える必要なし</li>
+          <li><strong>1:1交換</strong>：テストネットSUIを1:1の割合でWALに変換</li>
+          <li><strong>FROST単位</strong>：1 WAL = 10億FROST（SUIのMISTに類似）</li>
+        </ul>
+      </div>
       
       <div class="bg-yellow-50 p-4 rounded-lg">
-        <p class="font-semibold">🚰 WAL Faucetの使用方法</p>
+        <p class="font-semibold">🔄 SUI → WAL 交換方法</p>
+        <p>Walrus CLIを使用してSUIからWALへ交換できます：</p>
+        
+        <div class="bg-gray-900 text-green-400 p-3 rounded font-mono text-sm mt-3">
+          <p># 方法1: 全額交換コマンド（推定）</p>
+          <p>walrus get-wal</p>
+          <br>
+          <p># 方法2: 特定量を交換（推定）</p>
+          <p>walrus exchange-sui-for-wal --amount 1000000000  # 1 SUI分</p>
+        </div>
+        
+        <p class="text-sm text-gray-600 mt-2">※ 正確なコマンド名は異なる可能性があります。<code>walrus --help</code>で確認してください。</p>
+      </div>
+      
+      <div class="bg-green-50 p-4 rounded-lg mt-4">
+        <p class="font-semibold">🎯 やってみよう！ - WAL交換テスト</p>
         <ol>
-          <li><strong>Faucetサイトにアクセス</strong>：<a href="https://faucet.testnet.sui.io/" target="_blank">https://faucet.testnet.sui.io/</a></li>
-          <li><strong>ウォレットアドレスを入力</strong>：アクティブなSuiアドレスを貼り付け</li>
-          <li><strong>"Request Testnet WAL"を選択</strong>：WAL専用のボタンをクリック</li>
-          <li><strong>トークン受取確認</strong>：数分後にウォレットに追加される</li>
+          <li>テストネットSUIを確保（Faucetから取得）</li>
+          <li>Walrus CLIでWAL交換コマンドを実行</li>
+          <li>交換後のWAL残高を確認</li>
         </ol>
+        
+        <div class="bg-gray-900 text-green-400 p-3 rounded font-mono text-sm mt-3">
+          <p># ステップバイステップ</p>
+          <p>sui client gas                    # SUI残高確認</p>
+          <p>walrus get-wal                    # SUI→WAL交換</p>
+          <p>walrus balance                    # WAL残高確認</p>
+        </div>
       </div>
       
       <h4>3. WALトークンの確認</h4>
@@ -624,10 +655,26 @@ function getStepContent(stepId: string): string {
         <p class="font-semibold">⚠️ 重要：テストネットv2について</p>
         <ul>
           <li><strong>トークンリセット</strong>：以前のテストネットWALトークンは無効</li>
-          <li><strong>新規取得必須</strong>：新しいテストネットでは必ずファウセットから取得</li>
+          <li><strong>新規交換必須</strong>：新しいテストネットでは必ずSUIからWALへ交換</li>
           <li><strong>エポック期間</strong>：現在のテストネットは2日間/エポック</li>
           <li><strong>最大保存期間</strong>：最大183エポック（約1年間）</li>
+          <li><strong>交換レート</strong>：任意に設定された1:1レート（実際の価値ではない）</li>
         </ul>
+      </div>
+      
+      <div class="bg-purple-50 p-4 rounded-lg mt-4">
+        <p class="font-semibold">🔍 実際のコマンドの確認方法</p>
+        <p>正確なWAL取得コマンドを確認するには：</p>
+        
+        <div class="bg-gray-900 text-green-400 p-3 rounded font-mono text-sm mt-3">
+          <p># Walrus CLIのヘルプを確認</p>
+          <p>walrus --help</p>
+          <br>
+          <p># WAL関連のサブコマンドを探す</p>
+          <p>walrus --help | grep -i wal</p>
+        </div>
+        
+        <p class="text-sm mt-2">💡 <code>get-wal</code>、<code>request-wal</code>、<code>exchange</code>などのコマンドを探してみてください。</p>
       </div>
       
       <h3>基本的なファイル操作</h3>
