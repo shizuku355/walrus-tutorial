@@ -573,6 +573,7 @@ function getStepContent(stepId: string): string {
           <li>Walrus CLIがインストール済み</li>
           <li>Sui CLIがテストネットに設定済み</li>
           <li>アクティブなSuiアドレスにSUIトークンがある</li>
+          <li>テストネット用WALトークンを取得済み</li>
         </ul>
       </div>
       
@@ -581,6 +582,52 @@ function getStepContent(stepId: string): string {
         <p>sui client active-env</p>
         <p>sui client active-address</p>
         <p>sui client gas</p>
+      </div>
+      
+      <h3>テストネット用WALトークンの取得</h3>
+      <p>Walrusを実際に使用するには、テストネット用のWALトークンが必要です。以下の手順で取得しましょう：</p>
+      
+      <h4>1. SUIトークンの確保</h4>
+      <p>まず、ガス代として使用するSUIトークンがあることを確認します：</p>
+      
+      <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
+        <p># SUIトークン残高確認</p>
+        <p>sui client gas</p>
+        <br>
+        <p># 不足している場合はFaucetから取得</p>
+        <p># https://faucet.testnet.sui.io/ にアクセス</p>
+      </div>
+      
+      <h4>2. Walrus Testnet WAL Faucetからトークン取得</h4>
+      <p>テストネット専用のWALトークンを取得します：</p>
+      
+      <div class="bg-yellow-50 p-4 rounded-lg">
+        <p class="font-semibold">🚰 WAL Faucetの使用方法</p>
+        <ol>
+          <li><strong>Faucetサイトにアクセス</strong>：<a href="https://faucet.testnet.sui.io/" target="_blank">https://faucet.testnet.sui.io/</a></li>
+          <li><strong>ウォレットアドレスを入力</strong>：アクティブなSuiアドレスを貼り付け</li>
+          <li><strong>"Request Testnet WAL"を選択</strong>：WAL専用のボタンをクリック</li>
+          <li><strong>トークン受取確認</strong>：数分後にウォレットに追加される</li>
+        </ol>
+      </div>
+      
+      <h4>3. WALトークンの確認</h4>
+      <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
+        <p># WALトークンの確認</p>
+        <p>sui client objects --json | grep -i wal</p>
+        <br>
+        <p># または、Walrusでバランス確認</p>
+        <p>walrus balance</p>
+      </div>
+      
+      <div class="bg-red-50 p-4 rounded-lg mt-4">
+        <p class="font-semibold">⚠️ 重要：テストネットv2について</p>
+        <ul>
+          <li><strong>トークンリセット</strong>：以前のテストネットWALトークンは無効</li>
+          <li><strong>新規取得必須</strong>：新しいテストネットでは必ずファウセットから取得</li>
+          <li><strong>エポック期間</strong>：現在のテストネットは2日間/エポック</li>
+          <li><strong>最大保存期間</strong>：最大183エポック（約1年間）</li>
+        </ul>
       </div>
       
       <h3>基本的なファイル操作</h3>
@@ -600,14 +647,30 @@ function getStepContent(stepId: string): string {
       <p>作成したファイルをWalrusに保存します：</p>
       
       <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
-        <p># 単一ファイルの保存</p>
-        <p>walrus store hello.txt</p>
+        <p># 単一ファイルの保存（テストネットでは --epochs は必須）</p>
+        <p>walrus store --epochs 5 hello.txt</p>
         <br>
         <p># 複数ファイルを同時に保存</p>
-        <p>walrus store hello.txt test.json</p>
+        <p>walrus store --epochs 5 hello.txt test.json</p>
         <br>
-        <p># 保存期間を指定（エポック数）</p>
-        <p>walrus store --epochs 10 hello.txt</p>
+        <p># より長期間保存（テストネット最大183エポック）</p>
+        <p>walrus store --epochs 30 hello.txt</p>
+      </div>
+      
+      <div class="bg-green-50 p-4 rounded-lg mt-4">
+        <p class="font-semibold">🎯 やってみよう！ - テストネットでファイル保存</p>
+        <p>実際にファイルをテストネットWalrusに保存してみましょう：</p>
+        <ol>
+          <li>簡単なメッセージファイルを作成</li>
+          <li>WALトークンがあることを確認</li>
+          <li>5エポック（約10日間）で保存してみる</li>
+          <li>保存結果のBlob IDをメモしておく</li>
+        </ol>
+        
+        <div class="bg-gray-900 text-green-400 p-3 rounded font-mono text-sm mt-3">
+          <p>echo "私の最初のWalrus保存テスト - $(date)" > my-first-walrus-file.txt</p>
+          <p>walrus store --epochs 5 my-first-walrus-file.txt</p>
+        </div>
       </div>
       
       <div class="bg-yellow-50 p-4 rounded-lg mt-4">
@@ -630,6 +693,23 @@ function getStepContent(stepId: string): string {
         <br>
         <p># ファイルに出力</p>
         <p>walrus read &lt;blob-id&gt; --out recovered.txt</p>
+      </div>
+      
+      <div class="bg-green-50 p-4 rounded-lg mt-4">
+        <p class="font-semibold">🎯 やってみよう！ - ファイル読み取りテスト</p>
+        <p>先ほど保存したファイルを読み取ってみましょう：</p>
+        <ol>
+          <li>保存時に表示されたBlob IDをコピー</li>
+          <li>そのIDを使ってファイルを読み取る</li>
+          <li>内容が正しく保存されているか確認</li>
+        </ol>
+        
+        <div class="bg-gray-900 text-green-400 p-3 rounded font-mono text-sm mt-3">
+          <p># 例：Blob IDが「abc123def...」の場合</p>
+          <p>walrus read abc123def456</p>
+          <p>walrus read abc123def456 --out recovered-file.txt</p>
+          <p>cat recovered-file.txt  # 内容確認</p>
+        </div>
       </div>
       
       <h4>4. ブロブの状態確認</h4>
@@ -784,15 +864,33 @@ EOF</p>
       </div>
       
       <h3>設定ファイルの準備</h3>
-      <p>Site-Builderの設定ファイルをダウンロードします：</p>
+      <p>Site-Builderの設定ファイルをダウンロードします。テストネット用とメインネット用の設定があります：</p>
       
+      <h4>テストネット用設定（推奨 - チュートリアル用）</h4>
       <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
         <p># 設定ディレクトリの作成</p>
         <p>mkdir -p ~/.config/walrus</p>
         <br>
-        <p># 公式設定ファイルのダウンロード</p>
+        <p># テストネット用設定ファイルのダウンロード</p>
         <p>curl -o ~/.config/walrus/sites-config.yaml \
+  https://raw.githubusercontent.com/MystenLabs/walrus-sites/testnet/config/sites-config.yaml</p>
+      </div>
+      
+      <div class="bg-blue-50 p-4 rounded-lg mt-4">
+        <p class="font-semibold">💡 テストネット vs メインネット設定</p>
+        <ul>
+          <li><strong>テストネット</strong>：学習・練習用。無料のWALトークンで試用可能</li>
+          <li><strong>メインネット</strong>：本格運用用。実際のWALトークンが必要</li>
+        </ul>
+      </div>
+      
+      <div class="bg-yellow-50 p-4 rounded-lg mt-4">
+        <p class="font-semibold">📚 メインネット用設定（参考）</p>
+        <p>本格運用時は以下のコマンドでメインネット用設定を取得：</p>
+        <div class="bg-gray-900 text-green-400 p-3 rounded font-mono text-sm mt-2">
+          <p>curl -o ~/.config/walrus/sites-config.yaml \<br>
   https://raw.githubusercontent.com/MystenLabs/walrus-sites/mainnet/config/sites-config.yaml</p>
+        </div>
       </div>
       
       <h3>インストールの確認</h3>
@@ -884,17 +982,49 @@ EOF</p>
 └── assets/        # その他の静的ファイル</pre>
       </div>
       
-      <h3>テストデプロイの準備</h3>
-      <p>次のステップでのデプロイに向けて：</p>
+      <h3>🎯 やってみよう！ - テストネットでサイト作成</h3>
+      <p>実際にテストネットでWalrus Siteを作成してみましょう！</p>
+      
+      <div class="bg-green-50 p-4 rounded-lg">
+        <p class="font-semibold">📋 デプロイ前チェックリスト</p>
+        <ul>
+          <li>✅ Sui CLIがテストネットに設定されている</li>
+          <li>✅ アクティブアドレスにSUIトークン（ガス代用）がある</li>
+          <li>✅ WALトークンをファウセットから取得済み</li>
+          <li>✅ site-builderがインストール済み</li>
+          <li>✅ テストネット用設定ファイルがダウンロード済み</li>
+        </ul>
+      </div>
       
       <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
-        <p># 現在の設定を確認</p>
-        <p>sui client active-env</p>
+        <p># 設定確認コマンド</p>
+        <p>sui client active-env    # testnetか確認</p>
         <p>sui client active-address</p>
-        <p>sui client gas</p>
+        <p>sui client gas          # SUIトークンの確認</p>
+        <p>walrus balance          # WALトークンの確認</p>
         <br>
         <p># テストネットに切り替え（必要に応じて）</p>
         <p>sui client switch --env testnet</p>
+      </div>
+      
+      <h4>簡単なテストサイトでデプロイを試してみよう</h4>
+      <div class="bg-yellow-50 p-4 rounded-lg">
+        <p class="font-semibold">🚀 初回デプロイ手順</p>
+        <ol>
+          <li>上記のテストサイトを作成済みであることを確認</li>
+          <li>テストネット環境が準備できていることを確認</li>
+          <li>次の章（Step 3-1）で実際のデプロイを実行</li>
+        </ol>
+      </div>
+      
+      <div class="bg-blue-50 p-4 rounded-lg mt-4">
+        <p class="font-semibold">💰 テストネット利用のメリット</p>
+        <ul>
+          <li><strong>無料</strong>：WALトークンは無料で取得可能</li>
+          <li><strong>安全</strong>：失敗してもコストがかからない</li>
+          <li><strong>学習に最適</strong>：何度でも試行錯誤できる</li>
+          <li><strong>本番同等</strong>：メインネットと同じ機能を体験</li>
+        </ul>
       </div>
       
       <div class="bg-green-50 p-4 rounded-lg mt-4">
