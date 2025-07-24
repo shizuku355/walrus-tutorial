@@ -120,6 +120,23 @@
   .prose a:visited {
     @apply text-blue-700;
   }
+
+  /* チュートリアル記事内の見出しスタイル */
+  .prose h2 {
+    @apply text-2xl font-bold text-gray-900 mt-8 mb-4 border-b-2 border-blue-200 pb-2;
+  }
+
+  .prose h3 {
+    @apply text-xl font-semibold text-gray-800 mt-6 mb-3;
+  }
+
+  .prose h4 {
+    @apply text-lg font-medium text-gray-700 mt-4 mb-2;
+  }
+
+  .prose h5 {
+    @apply text-base font-medium text-gray-600 mt-3 mb-2;
+  }
 }
 
 @layer utilities {

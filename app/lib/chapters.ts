@@ -3,7 +3,7 @@ import { Chapter } from '@/app/types'
 export const chapters: Chapter[] = [
   {
     id: 'chapter-1',
-    title: 'Walrusの世界へようこそ',
+    title: 'Chapter 1: Walrusの世界へようこそ',
     description: '分散型ストレージの基本概念を学びましょう',
     icon: '',
     color: 'from-blue-400 to-blue-600',
@@ -51,7 +51,7 @@ export const chapters: Chapter[] = [
   },
   {
     id: 'chapter-2',
-    title: '開発環境の準備',
+    title: 'Chapter 2: 開発環境の準備',
     description: 'Walrus開発に必要なツールをセットアップしよう',
     icon: '',
     color: 'from-purple-400 to-purple-600',
@@ -110,8 +110,59 @@ export const chapters: Chapter[] = [
     ]
   },
   {
+    id: 'chapter-4',
+    title: 'Chapter 4: 高度な機能と最適化',
+    description: 'Walrus Sitesの高度な機能を活用しよう',
+    icon: '',
+    color: 'from-orange-400 to-orange-600',
+    steps: [
+      {
+        id: 'step-4-1',
+        chapterId: 'chapter-4',
+        stepNumber: '4-1',
+        title: 'ws-resources.jsonの高度な設定',
+        description: 'ルーティング、ヘッダー、リダイレクトを設定しよう',
+        content: '',
+        completed: false
+      },
+      {
+        id: 'step-4-2',
+        chapterId: 'chapter-4',
+        stepNumber: '4-2',
+        title: 'サイトの更新とバージョン管理',
+        description: 'デプロイ済みサイトの効率的な更新方法を学ぼう',
+        content: '',
+        completed: false
+      },
+      {
+        id: 'step-4-3',
+        chapterId: 'chapter-4',
+        stepNumber: '4-3',
+        title: 'GitHub Actionsでの自動デプロイ',
+        description: 'CI/CDパイプラインを構築しよう',
+        content: '',
+        completed: false
+      },
+      {
+        id: 'step-4-4',
+        chapterId: 'chapter-4',
+        stepNumber: '4-4',
+        title: 'パフォーマンス最適化',
+        description: 'サイトの読み込み速度とユーザー体験を向上させよう',
+        content: '',
+        completed: false,
+        badge: {
+          id: 'badge-chapter-4',
+          name: '上級開発者',
+          description: 'Walrus Sitesの高度な機能をマスターしました！',
+          icon: '🏆'
+        }
+      }
+    ]
+  },
+  {
     id: 'chapter-3',
-    title: 'はじめてのWalrus Site',
+    title: 'Chapter 3: はじめてのWalrus Site',
     description: 'シンプルなサイトを作ってデプロイしてみよう',
     icon: '',
     color: 'from-green-400 to-green-600',
@@ -120,8 +171,8 @@ export const chapters: Chapter[] = [
         id: 'step-3-1',
         chapterId: 'chapter-3',
         stepNumber: '3-1',
-        title: 'シンプルなHTMLサイトの作成',
-        description: '基本的なウェブサイトを作ろう',
+        title: 'HTMLサイト作成とWalrusデプロイ',
+        description: '基本的なサイトを作成してtestnetにデプロイしよう',
         content: '',
         completed: false
       },
@@ -129,8 +180,8 @@ export const chapters: Chapter[] = [
         id: 'step-3-2',
         chapterId: 'chapter-3',
         stepNumber: '3-2',
-        title: 'Site Builderでのデプロイ',
-        description: 'Walrusにサイトをアップロードしよう',
+        title: 'ローカルポータルでサイト確認',
+        description: 'testnetサイトをローカルポータルで表示してみよう',
         content: '',
         completed: false,
         badge: {
@@ -144,17 +195,8 @@ export const chapters: Chapter[] = [
         id: 'step-3-3',
         chapterId: 'chapter-3',
         stepNumber: '3-3',
-        title: 'サイトの確認とデバッグ',
-        description: 'デプロイしたサイトをチェックしよう',
-        content: '',
-        completed: false
-      },
-      {
-        id: 'step-3-4',
-        chapterId: 'chapter-3',
-        stepNumber: '3-4',
-        title: 'アップデートの実施',
-        description: 'サイトを更新してみよう',
+        title: 'mainnet本格運用とSuiNS設定',
+        description: 'mainnetでサイトを公開してwal.appで世界に発信しよう',
         content: '',
         completed: false,
         badge: {
@@ -162,99 +204,6 @@ export const chapters: Chapter[] = [
           name: 'Walrus開発者',
           description: 'サイトの作成とデプロイをマスターしました！',
           icon: '🌟'
-        }
-      }
-    ]
-  },
-  {
-    id: 'chapter-4',
-    title: '実践的なサイト構築',
-    description: 'より高度なウェブサイトを構築しよう',
-    icon: '',
-    color: 'from-orange-400 to-orange-600',
-    steps: [
-      {
-        id: 'step-4-1',
-        chapterId: 'chapter-4',
-        stepNumber: '4-1',
-        title: 'Next.jsサイトの準備',
-        description: 'モダンなフレームワークを使おう',
-        content: '',
-        completed: false
-      },
-      {
-        id: 'step-4-2',
-        chapterId: 'chapter-4',
-        stepNumber: '4-2',
-        title: '静的サイトジェネレーション',
-        description: 'Walrus用にサイトをビルドしよう',
-        content: '',
-        completed: false
-      },
-      {
-        id: 'step-4-3',
-        chapterId: 'chapter-4',
-        stepNumber: '4-3',
-        title: 'カスタムドメインの設定',
-        description: '独自ドメインを使ってみよう',
-        content: '',
-        completed: false
-      },
-      {
-        id: 'step-4-4',
-        chapterId: 'chapter-4',
-        stepNumber: '4-4',
-        title: 'GitHub Actionsでの自動デプロイ',
-        description: 'CI/CDパイプラインを構築しよう',
-        content: '',
-        completed: false,
-        badge: {
-          id: 'badge-chapter-4',
-          name: '上級開発者',
-          description: '実践的なWalrusサイト構築をマスターしました！',
-          icon: '🏆'
-        }
-      }
-    ]
-  },
-  {
-    id: 'chapter-5',
-    title: '上級テクニック',
-    description: 'Walrusの高度な機能を活用しよう',
-    icon: '',
-    color: 'from-indigo-400 to-indigo-600',
-    steps: [
-      {
-        id: 'step-5-1',
-        chapterId: 'chapter-5',
-        stepNumber: '5-1',
-        title: 'パフォーマンス最適化',
-        description: 'サイトの速度を向上させよう',
-        content: '',
-        completed: false
-      },
-      {
-        id: 'step-5-2',
-        chapterId: 'chapter-5',
-        stepNumber: '5-2',
-        title: '複数バージョンの管理',
-        description: 'バージョニングを活用しよう',
-        content: '',
-        completed: false
-      },
-      {
-        id: 'step-5-3',
-        chapterId: 'chapter-5',
-        stepNumber: '5-3',
-        title: '他のdAppsとの連携',
-        description: '分散型アプリケーションと統合しよう',
-        content: '',
-        completed: false,
-        badge: {
-          id: 'badge-master',
-          name: 'Walrusマスター',
-          description: 'すべてのChallengeを完了しました！',
-          icon: '👑'
         }
       }
     ]

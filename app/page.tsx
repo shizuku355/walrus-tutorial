@@ -65,13 +65,25 @@ export default function Home() {
           <h2 className="text-3xl font-bold text-center mb-12 text-gray-800">
             チャプター一覧
           </h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {chapters.map((chapter, index) => (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+            {/* 上段：Chapter 1 & 2 */}
+            {chapters.filter(chapter => chapter.id === 'chapter-1' || chapter.id === 'chapter-2').map((chapter, index) => (
               <motion.div
                 key={chapter.id}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: index * 0.1 }}
+              >
+                <ChapterCard chapter={chapter} />
+              </motion.div>
+            ))}
+            {/* 下段：Chapter 4 & 3 */}
+            {chapters.filter(chapter => chapter.id === 'chapter-4' || chapter.id === 'chapter-3').map((chapter, index) => (
+              <motion.div
+                key={chapter.id}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: (index + 2) * 0.1 }}
               >
                 <ChapterCard chapter={chapter} />
               </motion.div>

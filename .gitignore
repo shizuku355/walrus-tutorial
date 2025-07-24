@@ -52,3 +52,10 @@ Thumbs.db
 # Walrus specific
 site.config.json.backup
 .walrus/
+
+# Sui keys - NEVER commit these!
+*.key
+**/sui.keystore
+
+# walrus-sites build artifacts
+test-walrus-site/walrus-sites/
