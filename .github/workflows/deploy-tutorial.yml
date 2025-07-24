@@ -35,5 +35,5 @@ jobs:
           SUI_KEYSTORE: ${{ secrets.SUI_KEYSTORE }}
           DIST: out
           SUI_NETWORK: mainnet
-          EPOCHS: 5
+          EPOCHS: 1
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
