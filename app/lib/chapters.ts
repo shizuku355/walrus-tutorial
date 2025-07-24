@@ -110,6 +110,54 @@ export const chapters: Chapter[] = [
     ]
   },
   {
+    id: 'chapter-3',
+    title: 'Chapter 3: はじめてのWalrus Site',
+    description: 'シンプルなサイトを作ってデプロイしてみよう',
+    icon: '',
+    color: 'from-green-400 to-green-600',
+    steps: [
+      {
+        id: 'step-3-1',
+        chapterId: 'chapter-3',
+        stepNumber: '3-1',
+        title: 'HTMLサイト作成とWalrusデプロイ',
+        description: '基本的なサイトを作成してtestnetにデプロイしよう',
+        content: '',
+        completed: false
+      },
+      {
+        id: 'step-3-2',
+        chapterId: 'chapter-3',
+        stepNumber: '3-2',
+        title: 'ローカルポータルでサイト確認',
+        description: 'testnetサイトをローカルポータルで表示してみよう',
+        content: '',
+        completed: false,
+        badge: {
+          id: 'badge-first-deploy',
+          name: '初デプロイ',
+          description: '初めてWalrusにサイトを公開しました！',
+          icon: '🎉'
+        }
+      },
+      {
+        id: 'step-3-3',
+        chapterId: 'chapter-3',
+        stepNumber: '3-3',
+        title: 'mainnet本格運用とSuiNS設定',
+        description: 'mainnetでサイトを公開してwal.appで世界に発信しよう',
+        content: '',
+        completed: false,
+        badge: {
+          id: 'badge-chapter-3',
+          name: 'Walrus開発者',
+          description: 'サイトの作成とデプロイをマスターしました！',
+          icon: '🌟'
+        }
+      }
+    ]
+  },
+  {
     id: 'chapter-4',
     title: 'Chapter 4: 高度な機能と最適化',
     description: 'Walrus Sitesの高度な機能を活用しよう',
@@ -156,54 +204,6 @@ export const chapters: Chapter[] = [
           name: '上級開発者',
           description: 'Walrus Sitesの高度な機能をマスターしました！',
           icon: '🏆'
-        }
-      }
-    ]
-  },
-  {
-    id: 'chapter-3',
-    title: 'Chapter 3: はじめてのWalrus Site',
-    description: 'シンプルなサイトを作ってデプロイしてみよう',
-    icon: '',
-    color: 'from-green-400 to-green-600',
-    steps: [
-      {
-        id: 'step-3-1',
-        chapterId: 'chapter-3',
-        stepNumber: '3-1',
-        title: 'HTMLサイト作成とWalrusデプロイ',
-        description: '基本的なサイトを作成してtestnetにデプロイしよう',
-        content: '',
-        completed: false
-      },
-      {
-        id: 'step-3-2',
-        chapterId: 'chapter-3',
-        stepNumber: '3-2',
-        title: 'ローカルポータルでサイト確認',
-        description: 'testnetサイトをローカルポータルで表示してみよう',
-        content: '',
-        completed: false,
-        badge: {
-          id: 'badge-first-deploy',
-          name: '初デプロイ',
-          description: '初めてWalrusにサイトを公開しました！',
-          icon: '🎉'
-        }
-      },
-      {
-        id: 'step-3-3',
-        chapterId: 'chapter-3',
-        stepNumber: '3-3',
-        title: 'mainnet本格運用とSuiNS設定',
-        description: 'mainnetでサイトを公開してwal.appで世界に発信しよう',
-        content: '',
-        completed: false,
-        badge: {
-          id: 'badge-chapter-3',
-          name: 'Walrus開発者',
-          description: 'サイトの作成とデプロイをマスターしました！',
-          icon: '🌟'
         }
       }
     ]
