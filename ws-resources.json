@@ -1,5 +1,6 @@
 {
   "site_name": "Walrus Tutorial Site",
+  "object_id": "0xdfe69825ad5fbd77e9f4106894c11d45bac556c82c72a6b4cac2428779cd55c1",
   "headers": {
     "/*.html": {
       "Content-Type": "text/html; charset=utf-8",
