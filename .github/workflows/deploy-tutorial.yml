@@ -37,3 +37,20 @@ jobs:
           SUI_NETWORK: mainnet
           EPOCHS: 2
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        continue-on-error: true
+        id: deploy-attempt-1
+      
+      - name: Wait before retry
+        if: steps.deploy-attempt-1.outcome == 'failure'
+        run: sleep 30
+      
+      - name: Retry Deploy to Walrus Sites
+        if: steps.deploy-attempt-1.outcome == 'failure'
+        uses: MystenLabs/walrus-sites/.github/actions/deploy@main
+        with:
+          SUI_ADDRESS: ${{ vars.SUI_ADDRESS }}
+          SUI_KEYSTORE: ${{ secrets.SUI_KEYSTORE }}
+          DIST: out
+          SUI_NETWORK: mainnet
+          EPOCHS: 2
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
